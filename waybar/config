@@ -1,0 +1,157 @@
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    // "height": 28, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["custom/blank", "sway/workspaces", "sway/mode", "sway/window"],
+    //"modules-center": ["sway/window"],
+    "modules-right": ["cpu", "temperature", "battery#bat1", "battery#bat2",  "pulseaudio", "network", "backlight", "tray", "sway/language", "clock", "custom/blank"],
+    
+    // Modules configuration
+    "sway/window": {
+        "icon": true
+    },
+    "custom/blank": {
+        "format": " ",
+        "tooltip": false
+    },   
+    //    "sway/workspaces": {
+    //         "disable-scroll": true,
+    //         "all-outputs": true,
+    //         "format": "{icon}",
+    //         "format-icons": {
+    //             "1": "",
+    //             "2": "",
+    //             "3": "",
+    //             //"4": "",
+    //             //"5": "",
+    //             "urgent": "",
+    //             "focused": "",
+    //             "default": ""
+    //         }
+    //    },
+    //"keyboard-state": {
+    //    "numlock": true,
+    //    "capslock": true,
+    //    "format": "{name} {icon}",
+    //    "format-icons": {
+    //        "locked": "",
+    //        "unlocked": ""
+    //    }
+    //},
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    //"idle_inhibitor": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "activated": "",
+    //         "deactivated": ""
+    //     }
+    //},
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10,
+    },
+    "clock": {
+        "interval": 1,
+        "timezone": "Asia/Yekaterinburg",
+        "format": "{:%H:%M:%S}",
+        "tooltip-format": "{:%A, %B %d, %Y}",
+        "tooltip": true, 
+        "on-click": "foot -w650x725 --app-id calendar --title 'calendar' -e /home/vpenner/.config/sway/cal.sh"
+    },
+    "cpu": {
+        "format": " {usage}% ",
+        "tooltip": true
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": [""]
+    },
+    "battery#bat1": {
+        "bat": "BAT1",
+        "states": {
+            // "good": 95,
+            "warning": 35,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT0",
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": " {icon} {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": " {time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "network": {
+        //"interface": "wlp3*", // (Optional) To force the use of this interface
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": "{essid}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "NEWT_COLORS='root=white,black border=white,black window=white,black shadow=black,black title=white,blue button=white,black actbutton=white,blue compactbutton=white,black checkbox=white,black actcheckbox=white,blue entry=white,black disentry=white,black label=white,black listbox=white,black actlistbox=white,blue sellistbox=white,blue actsellistbox=white,blue textbox=white,black acttextbox=white,blue emptyscale=white,black fullscale=white,blue helpline=white,black roottext=white,black' foot --app-id nmtui --title 'nmtui' -e sh -c 'sleep 0.1 && nmtui'"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%  {format_source}",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}

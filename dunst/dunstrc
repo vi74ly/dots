@@ -1,0 +1,70 @@
+[global]
+    #Geometry and style settings
+    width = 425
+    height = 125
+    origin = top-right
+    offset = 10x10
+    padding = 8
+    horizontal_padding = 8
+    frame_width = 1
+    frame_color = "#555555EF"
+    gap_size = 5
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 400
+    progress_bar_max_width = 425
+    show_indicators = yes
+    icon_theme = "Papirus-Dark"
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48 
+    enable_recursive_icon_lookup = true
+    icon_path = /usr/share/icons/Papirus-Dark/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+
+    #Text settings
+    font = Liberation Mono 11
+    markup = full
+    format = "<b>%s</b>\n%b\n%p"
+    alignment = left
+    word_wrap = yes
+    ellipsize = end
+    ignore_newline = no
+
+    #Time and count settings
+    show_age_threshold = 30
+    idle_threshold = 10
+    notification_limit = 10
+    indicate_hidden = yes
+    sort = yes
+    stack_duplicates = true
+    hide_duplicate_count = false
+
+    follow = keyboard
+    dmenu = /usr/bin/wofi --show=dmenu -p dunst
+    browser = /usr/bin/firefox
+    always_run_script = true
+    ignore_dbusclose = false
+    mouse_left_click = do_action
+    mouse_middle_click = close_all
+    mouse_right_click = open_url
+
+
+[urgency_low]
+    background = "#333333EF"
+    foreground = "#C4C4C4"
+    frame_color = "#2E3440"
+    timeout = 3
+
+[urgency_normal]
+    background = "#333333EF"
+    foreground = "#C4C4C4"
+    #frame_color = "#555555EF"
+    highlight = "#ffffff"
+    timeout = 15
+
+[urgency_critical]
+    background = "#ffffff"
+    foreground = "#900000"
+    frame_color = "#900000"
+    timeout = 0

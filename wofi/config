@@ -1,0 +1,11 @@
+mode=drun,run
+run-always_parse_args=true
+no_actions=true
+term=foot
+hide_scroll=true
+insensitive=true
+prompt=
+height=40%
+width=20%
+gtk_dark=true
+display_generic=true
